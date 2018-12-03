@@ -5,10 +5,10 @@ cache:
     - ~/.npm
 
 node_js:
-  - "9"
+  - '9'
 
 git:
-  depth: 1
+  depth: 3
 
 script:
   - yarn build
