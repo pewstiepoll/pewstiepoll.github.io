@@ -2,29 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
-import PostsTileContainer from '../components/tiles/posts-tile-container';
+import PostsTileContainer from '../components/post-tiles/posts-tile-container';
 
-function sortByCategories(posts) {
-  return posts.reduce((categories, post) => {
-    // If categories doesn't have a category of incomming post - create it
-    if (!categories[post.category])
-      return { ...categories, [post.category]: [post] };
-
-    // Otherwise just add post to an existing category
-    return {
-      ...categories,
-      [post.category]: [...categories[post.category], post],
-    };
-  }, {});
-}
-
-function pickFirstOfEachCategory(sortedPosts) {
-  // Walk through each category and pick up the first post object from it
-  return Object.entries(sortedPosts).reduce(
-    (result, [category, posts]) => ({ ...result, [category]: posts[0] }),
-    {}
-  );
-}
+import {
+  sortByCategories,
+  pickFirstOfEachCategory,
+} from '../helpers/post-data-transformations';
 
 const HomePage = ({ pathContext }) => {
   const { posts } = pathContext;
@@ -33,16 +16,11 @@ const HomePage = ({ pathContext }) => {
 
   return (
     <Layout>
-      {/* Draw a post tile for the latest post of each category */}
+      {/* Render a post tile for the latest post of each category */}
       <PostsTileContainer>
         {({ PostTile }) =>
           Object.entries(sortedPosts).map(([category, post]) => (
-            <PostTile
-              key={category}
-              category={category}
-              title={post.title}
-              image={post.image}
-            />
+            <PostTile key={category} category={category} post={post} />
           ))
         }
       </PostsTileContainer>

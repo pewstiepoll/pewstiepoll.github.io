@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 import styles from './post-tile.module.css';
 
-export default function PostTileItem({ classes, category, title, image }) {
-  console.log('image: ', image);
+export default function PostTileItem({ classes, category, post }) {
+  const { title, image, slug } = post;
+
   return (
     <div className={`${styles.item} ${classes}`}>
-      <a href="//google.com">
+      <a href={`/posts/${slug}`}>
         <img className={styles.image} src={image} alt="" />
       </a>
       <div className={styles.overlay}>
@@ -23,8 +24,11 @@ export default function PostTileItem({ classes, category, title, image }) {
 PostTileItem.propTypes = {
   classes: PropTypes.string,
   category: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  post: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 PostTileItem.defaultProps = {
