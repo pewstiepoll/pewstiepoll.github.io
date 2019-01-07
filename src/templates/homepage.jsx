@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
+import PostsTileContainer from '../components/tiles/posts-tile-container';
 
 function sortByCategories(posts) {
   return posts.reduce((categories, post) => {
@@ -17,9 +19,11 @@ function sortByCategories(posts) {
 }
 
 function pickFirstOfEachCategory(sortedPosts) {
-  return Object.entries(sortedPosts).reduce((result, [category, posts]) => {
-    return { ...result, [category]: posts[0] };
-  }, {});
+  // Walk through each category and pick up the first post object from it
+  return Object.entries(sortedPosts).reduce(
+    (result, [category, posts]) => ({ ...result, [category]: posts[0] }),
+    {}
+  );
 }
 
 const HomePage = ({ pathContext }) => {
@@ -29,9 +33,24 @@ const HomePage = ({ pathContext }) => {
 
   return (
     <Layout>
-      <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }} />
-      <h1>Home page</h1>
+      {/* Draw a post tile for the latest post of each category */}
+      <PostsTileContainer>
+        {({ PostTile }) =>
+          Object.entries(sortedPosts).map(([category, post]) => (
+            <PostTile
+              key={category}
+              category={category}
+              title={post.title}
+              image={post.image}
+            />
+          ))
+        }
+      </PostsTileContainer>
     </Layout>
   );
+};
+
+HomePage.propTypes = {
+  pathContext: PropTypes.shape({}).isRequired,
 };
 export default HomePage;

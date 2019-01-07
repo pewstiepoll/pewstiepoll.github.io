@@ -20,6 +20,7 @@ function createHomepage(createPage, graphql) {
               title
               date
               category
+              image
             }
           }
         }
