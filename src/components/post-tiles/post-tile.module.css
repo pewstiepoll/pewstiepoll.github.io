@@ -34,7 +34,7 @@
 
   filter: brightness(1);
 
-  transition: filter 1s, transform 1s;
+  transition: filter 0.5s, transform 0.5s;
 
   object-fit: contain;
 
@@ -58,7 +58,7 @@
 
   background-color: rgba(0, 0, 0, 0.6);
 
-  transition: background-color 1s;
+  transition: background-color 0.5s;
 
   pointer-events: none;
 }
