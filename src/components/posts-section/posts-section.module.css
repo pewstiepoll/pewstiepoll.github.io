@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 280px auto;
+  grid-column-gap: 15px;
+  width: 800px;
+  height: 230px;
+}
+
+.image {
+  width: 280px;
+  height: 230px;
+  object-fit: cover;
+  margin: 0;
+}

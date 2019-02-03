@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
 import PostsTileContainer from '../components/post-tiles/posts-tile-container';
+import PostSection from '../components/posts-section/posts-section';
 
 import {
   sortByCategories,
@@ -24,6 +25,8 @@ const HomePage = ({ pathContext }) => {
           ))
         }
       </PostsTileContainer>
+      {/* Render the main section */}
+      <PostSection posts={posts} />
     </Layout>
   );
 };

@@ -1,0 +1,49 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 7px;
+}
+
+.header {
+  margin-bottom: 7px;
+}
+
+.header span:not(:last-child)::after {
+  content: '*';
+  padding: 0 5px;
+  line-height: 1em;
+}
+
+.date,
+.category-label {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  font-size: 0.7em;
+}
+
+.date {
+  color: #989898;
+  font-weight: 400;
+}
+
+.category-label {
+  color: #0000ff;
+  font-weight: 500;
+}
+
+.main {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 1.4em;
+  line-height: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+.description {
+  font-size: 0.9em;
+  font-weight: 400;
+}
