@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './post-tile.module.css';
 
+// TODO:I: Move PostTile to "complex" components
 export default function PostTileItem({ classes, category, post }) {
   const { title, image, slug } = post;
 
