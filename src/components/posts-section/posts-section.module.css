@@ -1,19 +1,22 @@
 .wrapper {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
 }
 
-.container {
+.title {
+  display: block;
+}
+
+.posts {
   display: grid;
-  grid-template-columns: 280px auto;
-  grid-column-gap: 15px;
-  width: 800px;
-  height: 230px;
+  grid-template-rows: 1fr;
+  grid-row-gap: 10px;
 }
 
-.image {
-  width: 280px;
-  height: 230px;
-  object-fit: cover;
-  margin: 0;
+@media screen and (min-width: 425px) {
+  .posts {
+    grid-row-gap: 25px;
+  }
 }
