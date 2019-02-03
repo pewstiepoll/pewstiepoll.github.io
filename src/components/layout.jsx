@@ -22,8 +22,16 @@ const Layout = ({ children }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1',
+            },
+            { name: 'description', content: 'Vadym Zelenin Personal blog' },
+            {
+              name: 'keywords',
+              content:
+                'vadym, zelenin, personal, blog, personal blog, vadym zelenin',
+            },
           ]}
         >
           <html lang="en" />
@@ -34,8 +42,9 @@ const Layout = ({ children }) => (
             margin: '0 auto',
             maxWidth: 1200,
             padding: '2rem 1rem',
-            display: 'flex',
-            flexDirection: 'column',
+            display: 'grid',
+            gridTemplateColumns: '1fr',
+            gridRowGap: '2rem',
           }}
         >
           {children}
