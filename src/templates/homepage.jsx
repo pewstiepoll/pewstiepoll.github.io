@@ -20,6 +20,7 @@ const HomePage = ({ pathContext }) => {
       {/* Render a post tile for the latest post of each category */}
       <PostsTileContainer>
         {({ PostTile }) =>
+          // TODO: Make tile link to category instead of posts.
           Object.entries(sortedPosts).map(([category, post]) => (
             <PostTile key={category} category={category} post={post} />
           ))
