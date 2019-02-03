@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Post from '../complex/post';
+import Post from '../composite/post';
 
 import styles from './posts-section.module.css';
 
