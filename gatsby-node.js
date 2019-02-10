@@ -18,6 +18,7 @@ function createHomepage(createPage, graphql) {
           node {
             frontmatter {
               title
+              description
               date
               category
               image
