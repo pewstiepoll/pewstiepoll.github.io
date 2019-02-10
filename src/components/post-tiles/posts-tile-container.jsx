@@ -5,6 +5,7 @@ import PostTile from './post-tile';
 
 import styles from './posts-tile-container.module.css';
 
+// TODO: Create withStyles HOC
 const PostTileWithStyles = props => (
   <PostTile classes={styles.item} {...props} />
 );
