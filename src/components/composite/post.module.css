@@ -14,7 +14,7 @@
 
 .image {
   width: 150px;
-  height: auto;
+  height: 150px;
   object-fit: cover;
   margin: 0;
 }
@@ -70,6 +70,7 @@
 
   .image {
     width: 180px;
+    height: 180px;
   }
 
   .header span:not(:last-child)::after {
@@ -95,6 +96,15 @@
 }
 
 @media screen and (min-width: 768px) {
+  .container {
+    grid-template-columns: 230px auto;
+  }
+
+  .image {
+    width: 230px;
+    height: 230px;
+  }
+
   .date,
   .category-label {
     letter-spacing: 0.1em;

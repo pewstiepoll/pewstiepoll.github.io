@@ -1,35 +1,37 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { Button } from '../primitives';
 
 import styles from './post.module.css';
 
-export default function Post() {
+export default function Post({
+  image,
+  date,
+  category,
+  link,
+  title,
+  description,
+}) {
   return (
     <article className={styles.container}>
-      <img
-        className={styles.image}
-        src="https://contentberg.theme-sphere.com/wp-content/uploads/2018/09/shutterstock_555069928-370x370.jpg"
-        alt="acticle_img"
-      />
+      <img className={styles.image} src={image} alt={title} />
       <div className={styles.details}>
         <div className={styles.header}>
-          <span className={styles.date}>MAY 15 2018</span>
+          <span className={styles.date}>{date}</span>
           {/* TODO?: Category label to be link */}
           {/* TODO?: Make Category label more generic  */}
-          <span className={styles.categoryLabel}>Gadgets</span>
+          <span className={styles.categoryLabel}>{category}</span>
         </div>
         <div className={styles.main}>
-          <a href="//google.com" className={styles.title}>
-            Explore the Sea world with Deep Sea Fishing
+          {/* TODO: Use Link component from Gatsby */}
+          <a href={link} className={styles.title}>
+            {title}
           </a>
-          <span className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima,
-            porro.
-          </span>
+          <span className={styles.description}>{description}</span>
         </div>
         <div className={styles.footer}>
-          <Button link="//google.com" type="primary">
+          <Button link={link} type="primary">
             Read More
           </Button>
         </div>
@@ -37,3 +39,12 @@ export default function Post() {
     </article>
   );
 }
+
+Post.propTypes = {
+  image: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+};
