@@ -2,18 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Layout from '../components/layout';
-import PostsTileContainer from '../components/post-tiles/posts-tile-container';
+// import PostsTileContainer from '../components/post-tiles/posts-tile-container';
 import PostSection from '../components/posts-section/posts-section';
 
-import {
-  sortByCategories,
-  pickFirstOfEachCategory,
-} from '../helpers/post-data-transformations';
+// import {
+//   sortByCategories,
+//   pickFirstOfEachCategory,
+// } from '../helpers/post-data-transformations';
 
 const HomePage = ({ pathContext }) => {
   const { posts } = pathContext;
 
-  const sortedPosts = pickFirstOfEachCategory(sortByCategories(posts));
+  // const sortedPosts = pickFirstOfEachCategory(sortByCategories(posts));
 
   return (
     <Layout>
@@ -27,7 +27,13 @@ const HomePage = ({ pathContext }) => {
         }
       </PostsTileContainer> */}
       {/* Render the main section */}
-      <PostSection posts={posts} />
+      <PostSection title="Latest Posts">
+        {({ Post }) =>
+          posts.map(post => (
+            <Post key={post.title} {...post} link={post.slug} />
+          ))
+        }
+      </PostSection>
     </Layout>
   );
 };
