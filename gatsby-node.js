@@ -42,19 +42,6 @@ function createHomepage(createPage, graphql) {
   });
 }
 
-exports.onCreateNode = ({ node, getNode, actions }) => {
-  if (node.internal.type === 'MarkdownRemark') {
-    const { createNodeField } = actions;
-    const slug = createFilePath({ node, getNode, basePath: 'pages' });
-
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slug,
-    });
-  }
-};
-
 function createPostsPages(createPage, graphql) {
   const blogPostTemplate = path.resolve(
     __dirname,
@@ -75,10 +62,11 @@ function createPostsPages(createPage, graphql) {
     }
   `).then(result => {
     const { edges } = result.data.allMarkdownRemark;
+    const postPagePath = postSlug => `posts${postSlug}`;
 
     edges.forEach(({ node }) =>
       createPage({
-        path: node.fields.slug,
+        path: postPagePath(node.fields.slug),
         component: blogPostTemplate,
         context: {
           slug: node.fields.slug,
@@ -87,6 +75,19 @@ function createPostsPages(createPage, graphql) {
     );
   });
 }
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === 'MarkdownRemark') {
+    const { createNodeField } = actions;
+    const slug = createFilePath({ node, getNode, basePath: 'pages' });
+
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug,
+    });
+  }
+};
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
