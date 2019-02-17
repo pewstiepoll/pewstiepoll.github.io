@@ -1,44 +1,52 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/layout';
-// import PostsTileContainer from '../components/post-tiles/posts-tile-container';
 import PostSection from '../components/posts-section/posts-section';
 
-// import {
-//   sortByCategories,
-//   pickFirstOfEachCategory,
-// } from '../helpers/post-data-transformations';
-
-const HomePage = ({ pathContext }) => {
-  const { posts } = pathContext;
-
-  // const sortedPosts = pickFirstOfEachCategory(sortByCategories(posts));
+function HomePage({ data }) {
+  const { edges } = data.allMarkdownRemark;
 
   return (
     <Layout>
-      {/* Render a post tile for the latest post of each category */}
-      {/* <PostsTileContainer>
-        {({ PostTile }) =>
-          // TODO: Make tile link to category instead of posts.
-          Object.entries(sortedPosts).map(([category, post]) => (
-            <PostTile key={category} category={category} post={post} />
-          ))
-        }
-      </PostsTileContainer> */}
-      {/* Render the main section */}
       <PostSection title="Latest Posts">
         {({ Post }) =>
-          posts.map(post => (
-            <Post key={post.title} {...post} link={post.slug} />
+          edges.map(({ node }) => (
+            <Post
+              key={node.fields.slug}
+              {...node.frontmatter}
+              link={`posts/${node.fields.slug}`}
+            />
           ))
         }
       </PostSection>
     </Layout>
   );
-};
+}
+
+export const query = graphql`
+  query {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+      edges {
+        node {
+          frontmatter {
+            title
+            date
+            description
+            image
+            category
+          }
+          fields {
+            slug
+          }
+        }
+      }
+    }
+  }
+`;
 
 HomePage.propTypes = {
-  pathContext: PropTypes.shape({}).isRequired,
+  data: PropTypes.shape(Object).isRequired,
 };
 export default HomePage;
