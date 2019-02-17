@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 
@@ -9,11 +10,15 @@ export default function BlogPost({ data }) {
   } = data.markdownRemark;
   return (
     <Layout>
-      <h3>{title}</h3>
+      <h2 style={{ margin: 0 }}>{title}</h2>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </Layout>
   );
 }
+
+BlogPost.propTypes = {
+  data: PropTypes.shape(Object).isRequired,
+};
 
 export const query = graphql`
   query($slug: String!) {

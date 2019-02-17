@@ -43,7 +43,7 @@ const Layout = ({ children }) => (
             maxWidth: 1200,
             padding: '2rem 1rem',
             display: 'grid',
-            gridTemplateColumns: '1fr',
+            gridTemplateColumns: '100%',
             gridRowGap: '2rem',
           }}
         >
