@@ -9,6 +9,7 @@ export default function PostTileItem({ classes, category, post }) {
 
   return (
     <div className={`${styles.item} ${classes}`}>
+      {/* TODO: Use <Link/> component */}
       <a href={`/posts/${slug}`}>
         <img className={styles.image} src={image} alt="" />
       </a>
