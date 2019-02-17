@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+
 import buttonStyles from './button.module.css';
 
 export default function Button({ link, type, size, children }) {
-  // TODO: Move Button component to a separate file
-  // TODO: Use Link component from Gatsby
   if (!buttonStyles[type]) throw TypeError(`Unknown type of button ${type}`);
 
   const defaultStyles = buttonStyles.main;
@@ -12,9 +12,9 @@ export default function Button({ link, type, size, children }) {
   const sizeStyles = buttonStyles[size];
 
   return (
-    <a href={link} className={`${defaultStyles} ${typeStyles} ${sizeStyles}`}>
+    <Link to={link} className={`${defaultStyles} ${typeStyles} ${sizeStyles}`}>
       {children}
-    </a>
+    </Link>
   );
 }
 

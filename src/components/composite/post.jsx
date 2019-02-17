@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'gatsby';
+
 import { Button } from '../primitives';
 
 import styles from './post.module.css';
@@ -24,10 +26,9 @@ export default function Post({
           <span className={styles.categoryLabel}>{category}</span>
         </div>
         <div className={styles.main}>
-          {/* TODO: Use Link component from Gatsby */}
-          <a href={link} className={styles.title}>
+          <Link to={link} className={styles.title}>
             {title}
-          </a>
+          </Link>
           <span className={styles.description}>{description}</span>
         </div>
         <div className={styles.footer}>
