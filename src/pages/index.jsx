@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/layout';
 import PostSection from '../components/posts-section/posts-section';
 
-function HomePage({ data }) {
+export default function HomePage({ data }) {
   const { edges } = data.allMarkdownRemark;
 
   return (
@@ -16,7 +16,7 @@ function HomePage({ data }) {
             <Post
               key={node.fields.slug}
               {...node.frontmatter}
-              link={`posts/${node.fields.slug}`}
+              link={`posts${node.fields.slug}`}
             />
           ))
         }
@@ -49,4 +49,3 @@ export const query = graphql`
 HomePage.propTypes = {
   data: PropTypes.shape(Object).isRequired,
 };
-export default HomePage;

@@ -6,42 +6,6 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
-function createHomepage(createPage, graphql) {
-  const homepageTemplate = path.resolve(
-    __dirname,
-    'src/templates/homepage.jsx'
-  );
-
-  return graphql(`
-    {
-      posts: allMarkdownRemark {
-        edges {
-          node {
-            frontmatter {
-              title
-              description
-              date
-              category
-              image
-              slug
-            }
-          }
-        }
-      }
-    }
-  `).then(result => {
-    if (result.errors) return Promise.reject(result.errors);
-
-    return createPage({
-      path: '/',
-      component: homepageTemplate,
-      context: {
-        posts: result.data.posts.edges.map(edge => edge.node.frontmatter),
-      },
-    });
-  });
-}
-
 function createPostsPages(createPage, graphql) {
   const blogPostTemplate = path.resolve(
     __dirname,
@@ -92,8 +56,5 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  return Promise.all([
-    createHomepage(createPage, graphql),
-    createPostsPages(createPage, graphql),
-  ]);
+  return createPostsPages(createPage, graphql);
 };
