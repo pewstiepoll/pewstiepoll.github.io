@@ -1,12 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+// Add brand icons to the library
+library.add(fab);
+
+// Register a service worker for wokring offline
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    console.log("registering the Offline SW...");
+    navigator.serviceWorker.register(
+      "/offline.js",
+      () => {
+        console.log("Offline SW has been registered successfully.");
+      },
+      e => {
+        console.error("An error occured while registering Offline SW: ", e);
+      }
+    );
+  });
+}
+
+ReactDOM.render(<App />, document.getElementById("root"));
