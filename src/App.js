@@ -1,8 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 
-// import "./styles.css";
+// Add brand icons to the library
+library.add(fab);
 
 function IconButton({ icon, href }) {
   return (

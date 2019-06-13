@@ -2,4 +2,4 @@
 - [x] Styles
 - [x] Mobile ready
 - [x] Animations
-- [ ] Offline
+- [x] Offline
