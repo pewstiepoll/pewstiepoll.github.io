@@ -1,5 +1,0 @@
-- [x] Markup
-- [x] Styles
-- [x] Mobile ready
-- [x] Animations
-- [x] Offline
